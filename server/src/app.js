@@ -73,17 +73,16 @@ app.post("/login",async (req,res)=>{
                 const isMatch = bycryptjs.compare(password, userEmail.password)
 
                 const token = await userEmail.generateAuthToken()
-                console.log(token)
 
                 if(isMatch){
                         res.status(201).render("home")
                 }
                 else{
-                        res.send("Invalid Details")
+                        res.send("Invalid Details1")
                 }
 
         }catch(error){
-                res.send("Invalid Details")
+                res.send("Invalid Details2")
         }
 })
 app.listen(port, ()=>{
