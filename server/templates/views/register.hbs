@@ -8,22 +8,37 @@
 
 <body>
         {{> navbar}}
-        <h1>Register</h1>
-        <div class="container">
+        <div class="main-container">
 
-                <form action="/register" method="POST">
-                        <label>Name:</label><br>
-                        <input name="name" type="text" required placeholder="Enter your name"><br>
-                        <label>Email:</label><br>
-                        <input name="email" type="email" required placeholder="Enter your email"><br>
-                        <label>Password:</label><br>
-                        <input name="password" type="password" required placeholder="Enter your password"><br>
-                        <label>Confirm Password:</label><br>
-                        <input name="password1" type="password" required placeholder="Confirm password"><br>
-                        <input class="btn btn-secondary" type="submit" value="Register">
+        <div class="register-container">
+                <i class="login-logo fa-solid fa-circle-plus"></i>
+                <h1 class="login-header">REGISTER</h1>
+                <form class="login-form" action="/register" method="POST">
+                        <div class="login-field">
+                                <label class="login-label">NAME</label><br>
+                                <input class="login-input" name="name" type="email" required placeholder="Eg. Steve Jobs"><br>
+                        </div>
+                        <div class="login-field">
+                                <label class="login-label">EMAIL</label><br>
+                                <input class="login-input" name="email" type="email" required placeholder="example@gmail.com"><br>
+                        </div>
+                        <div class="login-field">
+                                <label class="login-label">PASSWORD</label><br>
+                                <input class="login-input" name="password" type="password" required placeholder="Min 6 characters"><br>
+                        </div>
+                        <div class="login-field">
+                                <label class="login-label">CONFIRM PASSWORD</label><br>
+                                <input class="login-input" name="password1" type="password" required><br>
+                        </div>
+                        <div class="">
+                                <input class="login-input login-button" type="submit" class="btn btn-primary" value="REGISTER">
+                        </div>
+                        <div class="login-register-link">
+                                <p>Already have an account?<a href="/login">Login</a></p>
+                        </div>
+                </form>
         </div>
-
-        </form>
+        </div>
 </body>
 
 </html>
