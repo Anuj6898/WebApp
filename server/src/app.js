@@ -1,7 +1,8 @@
+const dotenv = require("dotenv").config({path: './.env'}).parsed
 const express = require("express")
 const app = express()
 const path = require('path')
-const port = process.env.PORT || 3000
+const port = process.env.PORT 
 require('./db/conn')
 const Register = require("./models/registers")
 const hbs = require("hbs")
@@ -42,6 +43,13 @@ app.post('/register',async (req,res)=>{
                                 email: req.body.email,
                                 password: password
                         })         
+
+                        const token = await registerManager.generateAuthToken()
+
+                        res.cookie("jwt", token,{
+                                expires: new Date(Date.now() + 30000),
+                                httpOnly:true,
+                        })
                         const registered = await registerManager.save()
                         res.status(201).render('index')
                 }
@@ -63,6 +71,10 @@ app.post("/login",async (req,res)=>{
                 const password = req.body.password
                 const userEmail = await Register.findOne({email: email})
                 const isMatch = bycryptjs.compare(password, userEmail.password)
+
+                const token = await userEmail.generateAuthToken()
+                console.log(token)
+
                 if(isMatch){
                         res.status(201).render("home")
                 }
