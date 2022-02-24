@@ -1,10 +1,12 @@
+const colors = require("colors")
 const mongoose = require("mongoose")
-mongoose.connect(process.env.DB_HOST,{
+
+mongoose.connect(process.env.DB_HOST, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // useCreateIndex: true
-}).then(()=>{
-        console.log(`Connection successfull`)
-}).catch(error=>{
-        console.log(`No Connection to the database!!${error}`)
+}).then(() => {
+        console.log(`DATABASE -->>`.blue + ` !! MONGODB CONNECTION SUCCESSFUL !!`.green.italic)
+}).catch(error => {
+        console.log(`DATABASE -->>`.blue + ` !! MONGODB CONNECTION FAILED !! `.red.italic + error)
 })
