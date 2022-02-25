@@ -3,24 +3,30 @@
 
 <head>
         {{>headers}}
+        <link rel="stylesheet" href="/login.css">
         <title>User | Login</title>
 </head>
 
 <body>
         {{> navbar}}
         <div class="main-container">
-
         <div class="login-container">
                 <i class="login-logo fa-solid fa-circle-user"></i>
                 <h1 class="login-header">LOGIN</h1>
                 <form class="login-form" action="/login" method="POST">
+                {{#if incorrectCred}}
+                <div class="login-invalid active"><i class="fa-solid fa-circle-exclamation"></i> Invalid Credentials</div>
+                {{else}}
+                <div class="login-invalid"><i class="fa-solid fa-circle-exclamation"></i> Invalid Credentials</div>
+                {{/if}}
+
                         <div class="login-field">
                                 <label class="login-label">EMAIL</label><br>
                                 <input class="login-input" name="email" type="email" required placeholder="example@gmail.com"><br>
                         </div>
                         <div class="login-field">
                                 <label class="login-label">PASSWORD</label><br>
-                                <input class="login-input" name="password" type="password" required placeholder="Min 6 characters"><br>
+                                <input class="login-input" name="password" type="password" required placeholder="******"><br>
                         </div>
                         <div class="">
                                 <input class="login-input login-button" type="submit" class="btn btn-primary" value="LOGIN">

@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser")
 const auth = require("../src/middleware/auth")
 const bycryptjs = require("bcrypt")
 
-const static_path = path.join(__dirname, "../public")
+const static_path = path.join(__dirname, "../public/css")
 const templates_path = path.join(__dirname, "../templates/views")
 const partials_path = path.join(__dirname, "../templates/partials")
 
@@ -55,12 +55,17 @@ app.post('/register', async (req, res) => {
         try {
                 const password = req.body.password
                 const password1 = req.body.password1
-
                 const alreadyExists = await Register.findOne({ email: req.body.email })
                 if (alreadyExists) {
-                        return res.status(404).send("This user already exists please try to login")
+                        return res.render("register",{
+                                userExists:true
+                        })
                 }
-
+                if(password.length<6){
+                        return res.render("register",{
+                                passLength:true,
+                        })
+                }
                 if (password == password1) {
                         const registerManager = new Register({
                                 name: req.body.name,
@@ -78,7 +83,10 @@ app.post('/register', async (req, res) => {
                         res.status(201).render('index')
                 }
                 else {
-                        res.status(404).send("Password did not match")
+                        res.render("register",{
+                                passwordMatch:true
+                                
+                        })
                 }
         } catch (error) {
                 res.status(400).send(error)
@@ -94,8 +102,7 @@ app.post("/login", async (req, res) => {
                 const email = req.body.email
                 const password = req.body.password
                 const userEmail = await Register.findOne({ email: email })
-                const isMatch = bycryptjs.compare(password, userEmail.password)
-
+                const isMatch = await bycryptjs.compare(password, userEmail.password)
                 const token = await userEmail.generateAuthToken()
                 res.cookie("jwt", token, {
                         expires: new Date(Date.now() + 3600000),
@@ -103,14 +110,20 @@ app.post("/login", async (req, res) => {
                 })
 
                 if (isMatch) {
-                        res.status(201).render("home")
+                        res.status(201).render("home",{
+                                userName: userEmail.name
+                        })
                 }
                 else {
-                        res.send("Invalid Details1")
+                        res.render("login",{
+                                incorrectCred: true
+                        })
                 }
 
         } catch (error) {
-                res.send("Invalid Details2")
+                res.render("login",{
+                        incorrectCred: true
+                })
         }
 })
 app.listen(port, () => {
