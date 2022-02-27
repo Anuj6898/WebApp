@@ -70,12 +70,23 @@ nav{
 
     /*Overlay*/
     .overlay{
-        position: fixed;
+        /* position: fixed;
         right: 0px;
         left: 0px;
         bottom: 0px;
         top: 2.75rem;
-        background-image: linear-gradient(blue, transparent);
+        background: linear-gradient(blue, transparent); */
+        position: fixed;
+        background: #6D3E8D;
+        height: 100vh;
+        width: 100%;
+        clip-path: circle(100px at 100% -1%);
+        -webkit-clip-path:circle(100px at 100% -17%);
+        transition: all 1s ease-out;
+    }
+    .overlay_open{
+        clip-path: circle(100px at 100% -1%);
+        -webkit-clip-path:circle(1310px at 100% -17%);
     }
     .overlay>a{
         color: aquamarine;
@@ -86,7 +97,7 @@ nav{
      /* open style*/
      .header_mob
      {
-         background: black;
+         /* background: black; */
          padding: 1.625rem;
          border-radius: 5px;
          margin-top: 1.5rem;
@@ -98,7 +109,8 @@ nav{
      .header_mob>a{
         display: block;
         text-align: center;
-         color: darkblue;
+         color: black;
+         margin-bottom:70px;
          padding: 0.625rem;
      }
 /*links*/
@@ -344,6 +356,18 @@ nav{
 }
 .animate{
     animation: transitionIn 0.75s;
+}
+@keyframes fadding{
+    from{
+         opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+.fade_ani
+{
+    animation: fadding 2s;
 }
 /* Footer */
 /* Footer icon */
