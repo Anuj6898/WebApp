@@ -3,18 +3,241 @@
 
 <head>
         {{>headers}}
+        <link rel="stylesheet" href="/home.css">
         <title>Document</title>
 </head>
 
 <body>
         {{>userNavbar userName=userName}}
-        {{!-- <h1>Welcome home {{userName}}</h1> --}}
-        <div>Truck 1</div>
-        <div>Truck 2</div>
-        <div>Truck 3</div>
-        <div>Truck 4</div>
-        <div>Truck 5</div>
-        <button class="btn btn-primary">add+</button>
+        <div class="home-truck-header">
+                <div class="home-header">Driver Data</div>
+                <button id="addTruckBtn" class="home-add-truck-btn">Add Truck <i class="fa-solid fa-circle-plus"></i></button>
+        </div>
+        <div id="addTruckForm" class="home-add-truck-form-container hidden">
+                <div class="home-add-truck-overlay ">
+                <div class="home-add-truck-form">
+                        <div class="home-add-truck-form-header">
+                                Add Truck <i class="fa-solid fa-truck-moving"></i>
+                        </div>
+                        <button id="addTruckClose" class="home-truck-close"><i class="fa-solid fa-circle-xmark"></i></button>
+                        <form action="/addTruck" method="POST">
+                        <label >Enter Verfication Code</label>
+                        <input type="text" placeholder="4 digit code" required>
+                        <input type="submit" value="Add +">
+                        </form>
+                </div>
+                </div>
+        </div>
+        <table>
+                <thead>
+                <tr>
+                        <th>Truck No. <i class="fa-solid fa-truck-moving"></i></th>
+                        <th>Heart Rate <i class="fa-solid fa-heart-pulse"></i></th>
+                        <th>Blood Oxygen <i class="fa-solid fa-hand-holding-medical"></i></th>
+                        <th>Temperature <i class="fa-solid fa-temperature-half"></i></th>
+                        <th>Air Quality <i class="fa-solid fa-wind"></i></i></th>
+                        <th>Location <i class="fa-solid fa-location-dot"></i></th>
+                        <th>Watch Worn <i class="fa-solid fa-circle-exclamation"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                        <tr id="row1">
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                        <tr>
+                                <td>MH 01 AA 2001</td>
+                                <td>72 BPM</td>
+                                <td>98 %</td>
+                                <td>36 &#176;C</td>
+                                <td>Good</td>
+                                <td> 10°N, 70°W</td>
+                                <td>Yes</td>
+                        </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                        <th>Truck No. <i class="fa-solid fa-truck-moving"></i></th>
+                        <th>Heart Rate <i class="fa-solid fa-heart-pulse"></i></th>
+                        <th>Blood Oxygen <i class="fa-solid fa-hand-holding-medical"></i></th>
+                        <th>Temperature <i class="fa-solid fa-temperature-half"></i></th>
+                        <th>Air Quality <i class="fa-solid fa-wind"></i></i></th>
+                        <th>Location <i class="fa-solid fa-location-dot"></i></th>
+                        <th>Watch Worn <i class="fa-solid fa-circle-exclamation"></i></th>
+                </tr>
+                </tfoot>
+    
+</table>
+        <script>
+                const addTruckBtn = document.getElementById("addTruckBtn")
+                const addTruckForm = document.getElementById("addTruckForm")
+                const addTruckClose = document.getElementById("addTruckClose")
+                addTruckBtn.addEventListener("click",()=>{
+                        addTruckForm.classList.toggle("hidden")
+                })
+                addTruckClose.addEventListener("click",()=>{
+                        addTruckForm.classList.toggle("hidden")
+                })
+                const row1 = document.getElementById("row1")
+                row1.addEventListener("click",(e)=>{
+                        console.log(e.currentTarget)
+                })
+
+
+                /* const heartRate = document.getElementById("hr")
+                const oxygen = document.getElementById("oxy")
+                const temperature = document.getElementById("temp")
+                setInterval(()=>{
+                fetch('https://api.thingspeak.com/channels/1660910/feeds.json?api_key=4XL6LC819TZBHCTV&results=2').then(res=>res.json()).then(x=>{
+                        let temp = x.feeds[1].field1
+                        let hr = x.feeds[1].field2
+                        let oxy = x.feeds[1].field3
+                        console.table({temp,hr,oxy})
+                        heartRate.innerHTML = hr
+                        oxygen.innerHTML = oxy
+                        temperature.innerHTML = temp
+                })
+
+                },15000) */
+        </script>
 </body>
 
 </html>
+<!--div class="home-trucks-container">
+                <div class="home-header-table">
+                        <h1 class="home-header">Data</h1>
+                        <button class="home-truck-add-button">Add Truck <i class="fa-solid fa-circle-plus"></i></button>
+                </div>
+
+                <div class="home-truck-data-names">
+                        <div class="home-truck-data-names-number">
+                                <i class="fa-solid fa-truck-moving"></i> Truck No.
+                        </div>
+                        <div class="home-truck-name-hr">
+                                <i class="fa-solid fa-heart-pulse"></i> 
+                                <span class="home-truck-name-BPM"> BPM</span> 
+                        </div>
+                        <div class="home-truck-name-oxy">
+                                <i class="fa-solid fa-hand-holding-medical"></i>
+                                <span class="home-truck-name-percent"> %</span> 
+                        </div>
+                        <div class="home-truck-name-hr">
+                                <i class="fa-solid fa-temperature-half"></i>
+                                <span class="home-truck-name-BPM"> &#176;C</span> 
+                        </div>
+                        <button id="home-drop-down-btn"><i class="fa-solid fa-circle-chevron-down"></i></button>
+                </div>
+                <div class="home-truck-data-names">
+                        <div class="home-truck-data-names-number">Truck Number</div>
+                        <div class="home-truck-name-hr">
+                                <span class="home-truck-name-BPM">Heart Rate</span> 
+                        </div>
+                        <div class="home-truck-name-oxy">
+                                <span class="home-truck-name-percent">Blood Oxygen</span> 
+                        </div>
+                        <div class="home-truck-name-hr">
+                                <span class="home-truck-name-BPM">Body Temperature</span> 
+                        </div>
+                        <button id="hidden-home-drop-down-btn"><i class="fa-solid fa-circle-chevron-down"></i></button>
+                </div>
+
+                <div class="home-trucks-data">
+                        <div class="home-truck-data">
+                                <div class="home-truck-number">
+                                        <div class="home-truck-number-header">
+                                        </div>
+                                        <div class="home-truck-number-data"><i class="fa-solid fa-truck-moving"></i> MH 01 AA 1010</div>
+                                </div>
+                                <div class="home-driver-hr">
+                                        <div class="home-driver-hr-header"><i class="fa-solid fa-heart-pulse"></i> Heart Rate</div>
+                                        <div class="home-driver-hr-data">72 BPM</div>
+                                </div>
+                                <div class="home-driver-oxy">
+                                        <div class="home-driver-oxy-header"><i class="fa-solid fa-hand-holding-medical"></i> SpO2</div>
+                                        <div class="home-driver-oxy-data">98 %</div>
+                                </div>
+                                <div class="home-driver-temp">
+                                        <div class="home-driver-temp-header"><i class="fa-solid fa-temperature-half"></i> Temperature</div>
+                                        <div class="home-driver-temp-data">36 &#176;C</div>
+                                </div>
+                        </div>
+                        <div class="home-truck-data">
+                                <div class="home-truck-number">
+                                        <div class="home-truck-number-header">
+                                        Truck No.</div>
+                                        <div class="home-truck-number-data"><i class="fa-solid fa-truck-moving"></i> MH 01 AA 1010</div>
+                                </div>
+                                <div class="home-driver-hr">
+                                        <div class="home-driver-hr-header"><i class="fa-solid fa-heart-pulse"></i> Heart Rate</div>
+                                        <div class="home-driver-hr-data"><span id="hr"></span> BPM</div>
+                                </div>
+                                <div class="home-driver-oxy">
+                                        <div class="home-driver-oxy-header"><i class="fa-solid fa-hand-holding-medical"></i> SpO2</div>
+                                        <div class="home-driver-oxy-data"><span id="oxy"></span> %</div>
+                                </div>
+                                <div class="home-driver-temp">
+                                        <div class="home-driver-temp-header"><i class="fa-solid fa-temperature-half"></i> Temperature</div>
+                                        <div class="home-driver-temp-data"><span id="temp"></span> &#176;C</div>
+                                </div>
+                        </div>
+                </div>
+        </div-->
