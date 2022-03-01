@@ -42,13 +42,13 @@
                 </thead>
                 <tbody>
                         <tr id="row1">
-                                <td>MH 01 AA 2001</td>
-                                <td>72 BPM</td>
-                                <td>98 %</td>
-                                <td>36 &#176;C</td>
-                                <td>Good</td>
-                                <td> 10°N, 70°W</td>
-                                <td>Yes</td>
+                                <td >MH 01 AA 2001</td>
+                                <td id="hr"></td>
+                                <td id="oxy"></td>
+                                <td id="temp"></td>
+                                <td id="aqi"></td>
+                                <td id="location"></td>
+                                <td id="watch"></td>
                         </tr>
                         <tr>
                                 <td>MH 01 AA 2001</td>
@@ -143,11 +143,32 @@
                 })
 
 
-                /* const heartRate = document.getElementById("hr")
-                const oxygen = document.getElementById("oxy")
-                const temperature = document.getElementById("temp")
+                const heartRate         = document.getElementById("hr")
+                const oxygen            = document.getElementById("oxy")
+                const temperature       = document.getElementById("temp")
+                const airQuality        = document.getElementById("aqi")
+                const driverLocation    = document.getElementById("location")
+                const watchWorn         = document.getElementById("watch")
+
                 setInterval(()=>{
-                fetch('https://api.thingspeak.com/channels/1660910/feeds.json?api_key=4XL6LC819TZBHCTV&results=2').then(res=>res.json()).then(x=>{
+                fetch(' https://api.thingspeak.com/channels/1658813/feeds.json?api_key=G9IWRDIX8Y4H6S06&results=2').then(res=>res.json()).then(x=>{
+                        let temp        = x.feeds[1].field
+                        let hr          = x.feeds[1].field
+                        let oxy         = x.feeds[1].field
+                        let watch       = x.feeds[1].field
+                        let location    = x.feeds[1].field
+                        let aqi         = x.feeds[1].field      
+
+                        temperature.innerHTML           = `${temp} &#176;C`
+                        oxygen.innerHTML                = `${oxy} %`
+                        heartRate.innerHTML             = `${hr} BPM`
+                        watchWorn.innerHTML             = watch?`No`:`Yes`
+                        driverLocation.innerHTML        = `${location}`
+                        airQuality.innerHTML            = aqi?`Bad`:`Good` 
+                        console.table(x.feeds)
+
+                })},5000)
+                /*fetch('https://api.thingspeak.com/channels/1660910/feeds.json?api_key=4XL6LC819TZBHCTV&results=2').then(res=>res.json()).then(x=>{
                         let temp = x.feeds[1].field1
                         let hr = x.feeds[1].field2
                         let oxy = x.feeds[1].field3
@@ -160,8 +181,8 @@
                 },15000) */
         </script>
 </body>
-
 </html>
+
 <!--div class="home-trucks-container">
                 <div class="home-header-table">
                         <h1 class="home-header">Data</h1>
