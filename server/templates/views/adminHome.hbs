@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        {{>headers}}
+        <link rel="stylesheet" href="/adminHome.css">
+        <title>AeroFleet | Admin</title>
+</head>
+
+<body>
+        {{> userNavbar }}
+        <div class="admin-container">
+
+        <h1>Welcome admin Home</h1>
+
+        <div class="admin-add-truck-form">
+        <!--div class="admin-registration-failed"><i class="fa-solid fa-circle-exclamation"></i> Truck Already Registered</div-->
+        {{#if success}}
+        <div class="admin-registration-success"><i class="fa-solid fa-circle-check"></i> Truck Registration Successfull</div>
+        {{/if}}
+        {{#if failed}}
+        <div class="admin-registration-failed "><i class="fa-solid fa-circle-exclamation"></i> Truck Registration Failed</div>
+        {{/if}}
+        <form action="/addTruck" method="POST">
+                <label >Enter Truck Number</label>
+                <input name="truckNumber" type="text" placeholder="MH-01-NA-2991" required>
+                <label>Channel Id</label>
+                <input type="text" name="channelId" placeholder="1660910" required>
+                <label>API Key</label>
+                <input type="text" name="apiKey" placeholder="4XL6LC819TZBHCTV" required>
+                <input type="submit" value="Add +">
+        </form>
+        </div>
+        </div>  
+</body>
+
+</html>

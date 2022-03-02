@@ -6,6 +6,7 @@ const port = process.env.PORT
 
 require('./db/conn')
 const Register = require("./models/registers")
+const Truck = require("./models/trucks")
 const hbs = require("hbs")
 const colors = require("colors")
 const cookieParser = require("cookie-parser")
@@ -30,6 +31,57 @@ app.get('/', (req, res) => {
 })
 app.get('/secret', auth, (req, res) => {
         res.render('secret')
+})
+
+// Admin Page
+app.get('/admin',auth,(req,res)=>{
+        res.render('admin')
+})
+app.post('/admin',(req,res)=>{
+        const mail = req.body.email
+        const pass = req.body.password
+        if(mail==='anuj@gmail.com' && pass==='1234'){
+                res.render("adminHome")
+        }
+        else{
+                return res.render("admin",{
+                        adminInvalid:true
+                })
+        }
+
+})
+app.post('/addTruck',async (req,res)=>{
+
+        const truckNumber       = req.body.truckNumber
+        const channelId         = req.body.channelId
+        const apiKey            = req.body.apiKey
+        const truckExists = await Truck.findOne({ channelId: channelId })        
+        if(truckExists){
+                return res.render('adminHome',{
+                        exists:true
+                })
+        }
+        const registerTruck = new Truck({
+                truckNumber:truckNumber,
+                channelId:channelId,
+                apiKey:apiKey
+        })
+        const registeredTruck = await registerTruck.save()
+
+        if(registerTruck){
+                return res.render('adminHome',{
+                        success:true
+                })
+        }
+        else{
+                return res.render('adminHome',{
+                        failed:true
+                })
+        }
+})
+
+app.get('/home',auth,(req,res)=>{
+        res.render("home")
 })
 
 // Logout
@@ -126,6 +178,11 @@ app.post("/login", async (req, res) => {
                 })
         }
 })
+
+app.post('/addTruck',(req,res)=>{
+        res.send(req.body)
+})
+
 app.listen(port, () => {
         console.log(`LIVESERVER -->> `.blue + `http://localhost:${port}/`.yellow.bgBlack.italic)
 })

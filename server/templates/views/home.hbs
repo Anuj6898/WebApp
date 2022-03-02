@@ -21,9 +21,9 @@
                         </div>
                         <button id="addTruckClose" class="home-truck-close"><i class="fa-solid fa-circle-xmark"></i></button>
                         <form action="/addTruck" method="POST">
-                        <label >Enter Verfication Code</label>
-                        <input type="text" placeholder="4 digit code" required>
-                        <input type="submit" value="Add +">
+                        <label >Enter Channel Id</label>
+                        <input name="channelId" type="text" placeholder="7 digit code" required>
+                        <input type="submit" value="Add Truck+">
                         </form>
                 </div>
                 </div>
@@ -49,6 +49,7 @@
                                 <td id="aqi"></td>
                                 <td id="location"></td>
                                 <td id="watch"></td>
+                                <td><a href="/driverhealth">Go</a></td>
                         </tr>
                         <tr>
                                 <td>MH 01 AA 2001</td>
@@ -149,6 +150,7 @@
                 const airQuality        = document.getElementById("aqi")
                 const driverLocation    = document.getElementById("location")
                 const watchWorn         = document.getElementById("watch")
+                
 
                 setInterval(()=>{
                 fetch(' https://api.thingspeak.com/channels/1658813/feeds.json?api_key=G9IWRDIX8Y4H6S06&results=2').then(res=>res.json()).then(x=>{

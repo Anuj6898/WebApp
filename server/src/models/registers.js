@@ -18,6 +18,10 @@ const fleetManager = new mongoose.Schema({
                 type: String,
                 required: true
         },
+        trucks:{
+                type:String,
+                unique: true,            
+        },
         tokens: [{
                 token: {
                         type: String,

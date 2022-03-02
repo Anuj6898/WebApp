@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        {{>headers}}
+        <link rel="stylesheet" href="/login.css">
+        <title>AeroFleet | Admin</title>
+</head>
+
+<body>
+        {{> userNavbar userName=userName}}
+        <div class="main-container">
+        <div class="login-container">
+                <i class="login-logo fa-solid fa-circle-user"></i>
+                <h1 class="login-header">ADMIN</h1>
+                <form class="login-form" action="/admin" method="POST">
+                {{#if adminInvalid}}
+                <div class="login-invalid active"><i class="fa-solid fa-circle-exclamation"></i> Invalid Credentials</div>
+                {{else}}
+                <div class="login-invalid"><i class="fa-solid fa-circle-exclamation"></i> Invalid Credentials</div>
+                {{/if}}
+
+                        <div class="login-field">
+                                <label class="login-label">EMAIL</label><br>
+                                <input class="login-input" name="email" type="email" required placeholder="example@gmail.com"><br>
+                        </div>
+                        <div class="login-field">
+                                <label class="login-label">PASSWORD</label><br>
+                                <input class="login-input" name="password" type="password" required placeholder="******"><br>
+                        </div>
+                        <div class="">
+                                <input class="login-input login-button" type="submit" class="btn btn-primary" value="Login as Admin">
+                        </div>
+                        <p>email=anuj@gmail.com pass=1234</p>
+                </form>
+        </div>
+        </div>
+</body>
+
+</html>
