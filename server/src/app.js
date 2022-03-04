@@ -1,6 +1,7 @@
 const dotenv = require("dotenv").config({ path: './.env' }).parsed
 const express = require("express")
 const app = express()
+const fetch = require( 'cross-fetch')
 const path = require('path')
 const port = process.env.PORT
 
@@ -12,6 +13,8 @@ const colors = require("colors")
 const cookieParser = require("cookie-parser")
 const auth = require("../src/middleware/auth")
 const bycryptjs = require("bcrypt")
+const jwt = require('jsonwebtoken')
+const { channel } = require("diagnostics_channel")
 
 const static_path = path.join(__dirname, "../public/css")
 const templates_path = path.join(__dirname, "../templates/views")
@@ -40,7 +43,7 @@ app.get('/admin',auth,(req,res)=>{
 app.post('/admin',(req,res)=>{
         const mail = req.body.email
         const pass = req.body.password
-        if(mail==='anuj@gmail.com' && pass==='1234'){
+        if(mail==='admin@admin.in' && pass==='123456'){
                 res.render("adminHome")
         }
         else{
@@ -52,19 +55,22 @@ app.post('/admin',(req,res)=>{
 })
 app.post('/addTruck',async (req,res)=>{
 
-        const truckNumber       = req.body.truckNumber
+        const truckNum          = req.body.truckNumber
         const channelId         = req.body.channelId
         const apiKey            = req.body.apiKey
-        const truckExists = await Truck.findOne({ channelId: channelId })        
-        if(truckExists){
+        const truckExists       = await Truck.findOne({ truckNum : truckNum })        
+        const channelExists     = await Truck.findOne({ channelId : channelId })
+        const apiExists         = await Truck.findOne({ apiKey: apiKey})
+
+        if(truckExists|| channelExists || apiExists){
                 return res.render('adminHome',{
                         exists:true
                 })
         }
         const registerTruck = new Truck({
-                truckNumber:truckNumber,
-                channelId:channelId,
-                apiKey:apiKey
+                truckNum:       truckNum,
+                channelId:      channelId,
+                apiKey:         apiKey
         })
         const registeredTruck = await registerTruck.save()
 
@@ -80,9 +86,29 @@ app.post('/addTruck',async (req,res)=>{
         }
 })
 
+app.post('/add',async (req,res)=>{
+        try{
+                const truck = await Truck.findOne({channelId: req.body.channelId})
+                res.render('home',{
+                        apiKey:         truck.apiKey,
+                        channelId:      truck.channelId,
+                        truckNum:       truck.truckNum,
+                })
+        }
+        catch(error){
+                res.send("error: "+error).status(404)
+        }
+        // res.send(await Truck.findOne({channelId:req.body.channelId}))
+})
+
+
 app.get('/home',auth,(req,res)=>{
         res.render("home")
 })
+app.get('/driverhealth',auth,(req,res)=>{
+        res.render('driverhealth')
+})
+
 
 // Logout
 app.get('/logout', auth, async (req, res) => {
@@ -163,7 +189,8 @@ app.post("/login", async (req, res) => {
 
                 if (isMatch) {
                         res.status(201).render("home",{
-                                userName: userEmail.name
+                                userName: userEmail.name,
+                                trucks: userEmail.trucks
                         })
                 }
                 else {

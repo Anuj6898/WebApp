@@ -14,7 +14,9 @@
         <h1>Welcome admin Home</h1>
 
         <div class="admin-add-truck-form">
-        <!--div class="admin-registration-failed"><i class="fa-solid fa-circle-exclamation"></i> Truck Already Registered</div-->
+        {{#if exists}}
+        <div class="admin-registration-failed"><i class="fa-solid fa-circle-exclamation"></i> Truck Already Registered</div>
+        {{/if}}
         {{#if success}}
         <div class="admin-registration-success"><i class="fa-solid fa-circle-check"></i> Truck Registration Successfull</div>
         {{/if}}

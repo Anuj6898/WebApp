@@ -20,7 +20,7 @@
                                 Add Truck <i class="fa-solid fa-truck-moving"></i>
                         </div>
                         <button id="addTruckClose" class="home-truck-close"><i class="fa-solid fa-circle-xmark"></i></button>
-                        <form action="/addTruck" method="POST">
+                        <form action="/add" method="POST">
                         <label >Enter Channel Id</label>
                         <input name="channelId" type="text" placeholder="7 digit code" required>
                         <input type="submit" value="Add Truck+">
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                         <tr id="row1">
-                                <td >MH 01 AA 2001</td>
+                                <td >{{truckNum}}</td>
                                 <td id="hr"></td>
                                 <td id="oxy"></td>
                                 <td id="temp"></td>
@@ -51,8 +51,9 @@
                                 <td id="watch"></td>
                                 <td><a href="/driverhealth">Go</a></td>
                         </tr>
+                       
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -61,7 +62,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -70,7 +71,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -79,7 +80,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -88,7 +89,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -97,7 +98,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -106,7 +107,7 @@
                                 <td>Yes</td>
                         </tr>
                         <tr>
-                                <td>MH 01 AA 2001</td>
+                                <td>TestTruck</td>
                                 <td>72 BPM</td>
                                 <td>98 %</td>
                                 <td>36 &#176;C</td>
@@ -125,10 +126,16 @@
                         <th>Location <i class="fa-solid fa-location-dot"></i></th>
                         <th>Watch Worn <i class="fa-solid fa-circle-exclamation"></i></th>
                 </tr>
-                </tfoot>
-    
+                </tfoot> 
 </table>
         <script>
+                const apiKey = '{{{ apiKey }}}'
+                const channelId = '{{{ channelId }}}'
+                const truckNum = '{{{ truckNum }}}'
+                
+                //const d = [{truckNum:'{{{ trucks.truckNum }}}',apiKey:'{{{ trucks.apiKey }}}',channelId:'{{{ trucks.channelId }}}/'}]
+                //console.log(d)
+
                 const addTruckBtn = document.getElementById("addTruckBtn")
                 const addTruckForm = document.getElementById("addTruckForm")
                 const addTruckClose = document.getElementById("addTruckClose")
@@ -138,12 +145,7 @@
                 addTruckClose.addEventListener("click",()=>{
                         addTruckForm.classList.toggle("hidden")
                 })
-                const row1 = document.getElementById("row1")
-                row1.addEventListener("click",(e)=>{
-                        console.log(e.currentTarget)
-                })
-
-
+                
                 const heartRate         = document.getElementById("hr")
                 const oxygen            = document.getElementById("oxy")
                 const temperature       = document.getElementById("temp")
@@ -151,22 +153,23 @@
                 const driverLocation    = document.getElementById("location")
                 const watchWorn         = document.getElementById("watch")
                 
-
                 setInterval(()=>{
-                fetch(' https://api.thingspeak.com/channels/1658813/feeds.json?api_key=G9IWRDIX8Y4H6S06&results=2').then(res=>res.json()).then(x=>{
-                        let temp        = x.feeds[1].field
-                        let hr          = x.feeds[1].field
-                        let oxy         = x.feeds[1].field
-                        let watch       = x.feeds[1].field
-                        let location    = x.feeds[1].field
-                        let aqi         = x.feeds[1].field      
+                fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
+                        let temp        = x.feeds[1].field1
+                        let hr          = x.feeds[1].field2
+                        let oxy         = x.feeds[1].field3
+                        let watch       = x.feeds[1].field4
+                        let location    = x.feeds[1].field6 
+                        let aqi         = x.feeds[1].field5 
+                        let cMono       = x.feeds[1].field7 
+                        let dust        = x.feeds[1].field8
 
                         temperature.innerHTML           = `${temp} &#176;C`
                         oxygen.innerHTML                = `${oxy} %`
                         heartRate.innerHTML             = `${hr} BPM`
-                        watchWorn.innerHTML             = watch?`No`:`Yes`
+                        watchWorn.innerHTML             = watch?`Yes`:`No`
                         driverLocation.innerHTML        = `${location}`
-                        airQuality.innerHTML            = aqi?`Bad`:`Good` 
+                        airQuality.innerHTML            = aqi?`Good`:`Bad` 
                         console.table(x.feeds)
 
                 })},5000)

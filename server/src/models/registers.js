@@ -18,10 +18,23 @@ const fleetManager = new mongoose.Schema({
                 type: String,
                 required: true
         },
-        trucks:{
-                type:String,
-                unique: true,            
-        },
+        trucks:[{
+                trucknum:{
+                        type:String,
+                        required:true,
+                        unique: true,
+                },
+                apikey:{
+                        type:String,
+                        required:true,
+                        unique: true,
+                },
+                channelid:{
+                        type:String,
+                        required:true,
+                        unique: true,
+                }
+        }],
         tokens: [{
                 token: {
                         type: String,
@@ -42,6 +55,7 @@ fleetManager.methods.generateAuthToken = async function () {
                 console.log(Error)
         }
 }
+
 
 // Hashing Password
 fleetManager.pre("save", async function (next) {
