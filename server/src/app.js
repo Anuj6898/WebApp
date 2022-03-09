@@ -150,7 +150,6 @@ app.post('/register', async (req, res) => {
                                 email: req.body.email,
                                 password: password
                         })
-
                         const token = await registerManager.generateAuthToken()
 
                         res.cookie("jwt", token, {
@@ -158,6 +157,7 @@ app.post('/register', async (req, res) => {
                                 httpOnly: true,
                         })
                         const registered = await registerManager.save()
+                        // console.log(registered)
                         res.status(201).render('index')
                 }
                 else {
@@ -167,7 +167,8 @@ app.post('/register', async (req, res) => {
                         })
                 }
         } catch (error) {
-                res.status(400).send(error)
+                res.send(error)
+                // res.status(400).send(error)
         }
 })
 
