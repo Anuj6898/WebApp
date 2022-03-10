@@ -36,7 +36,8 @@
                         <th>Blood Oxygen <i class="fa-solid fa-hand-holding-medical"></i></th>
                         <th>Temperature <i class="fa-solid fa-temperature-half"></i></th>
                         <th>Air Quality <i class="fa-solid fa-wind"></i></i></th>
-                        <th>Location <i class="fa-solid fa-location-dot"></i></th>
+                        <th>Latitude <i class="fa-solid fa-location-dot"></i></th>
+                        <th>Longitude <i class="fa-solid fa-location-dot"></i></th>
                         <th>Watch Worn <i class="fa-solid fa-circle-exclamation"></i></th>
                 </tr>
                 </thead>
@@ -47,7 +48,8 @@
                                 <td id="oxy"></td>
                                 <td id="temp"></td>
                                 <td id="aqi"></td>
-                                <td id="location"></td>
+                                <td id="latitude"></td>
+                                <td id="longitude"></td>
                                 <td id="watch"></td>
                                 <td><a href="/driverhealth">Go</a></td>
                         </tr>
@@ -145,14 +147,7 @@
                 addTruckClose.addEventListener("click",()=>{
                         addTruckForm.classList.toggle("hidden")
                 })
-                
-                const heartRate         = document.getElementById("hr")
-                const oxygen            = document.getElementById("oxy")
-                const temperature       = document.getElementById("temp")
-                const airQuality        = document.getElementById("aqi")
-                const driverLocation    = document.getElementById("location")
-                const watchWorn         = document.getElementById("watch")
-                
+
                 setInterval(()=>{
                 fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
                         let temp        = x.feeds[1].field1
@@ -162,28 +157,20 @@
                         let location    = x.feeds[1].field6 
                         let aqi         = x.feeds[1].field5 
                         let cMono       = x.feeds[1].field7 
-                        let dust        = x.feeds[1].field8
+                        let dust        = x.feeds[1].field8.split('_')
+                        let lat         = dust[0]
+                        let long        = dust[1]
 
-                        temperature.innerHTML           = `${temp} &#176;C`
-                        oxygen.innerHTML                = `${oxy} %`
-                        heartRate.innerHTML             = `${hr} BPM`
-                        watchWorn.innerHTML             = watch?`Yes`:`No`
-                        driverLocation.innerHTML        = `${location}`
-                        airQuality.innerHTML            = aqi?`Good`:`Bad` 
-                        console.table(x.feeds)
+                        document.getElementById("temp").innerHTML           = `${temp} &#176;C`
+                        document.getElementById("oxy").innerHTML            = `${oxy} %`
+                        document.getElementById("hr").innerHTML             = `${hr} BPM`
+                        document.getElementById("watch").innerHTML          =  watch?`Yes`:`No`
+                        document.getElementById("aqi").innerHTML            =  aqi?`Good`:`Bad` 
+                        document.getElementById('latitude').innerHTML       = `${lat} &#176;`
+                        document.getElementById('longitude').innerHTML      = `${long} &#176;`
 
                 })},5000)
-                /*fetch('https://api.thingspeak.com/channels/1660910/feeds.json?api_key=4XL6LC819TZBHCTV&results=2').then(res=>res.json()).then(x=>{
-                        let temp = x.feeds[1].field1
-                        let hr = x.feeds[1].field2
-                        let oxy = x.feeds[1].field3
-                        console.table({temp,hr,oxy})
-                        heartRate.innerHTML = hr
-                        oxygen.innerHTML = oxy
-                        temperature.innerHTML = temp
-                })
 
-                },15000) */
         </script>
 </body>
 </html>
