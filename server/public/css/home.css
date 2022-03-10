@@ -131,6 +131,8 @@ table{
         width: 95%;
         margin: auto;
         min-width: 200px;
+        border-collapse: collapse; 
+        border-spacing: 0;
 }
 tbody{
         height: 80vh;
@@ -138,6 +140,10 @@ tbody{
 }
 td,th{
         text-align: center;
+}
+tr{
+        border: 1px solid;
+         ;
 }
 tr:hover{
         background: #eeee ;

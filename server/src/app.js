@@ -106,6 +106,7 @@ app.get('/home',auth,(req,res)=>{
         res.render("home")
 })
 app.get('/driverhealth',auth,(req,res)=>{
+        console.log(res.cookie())
         res.render('driverhealth')
 })
 
