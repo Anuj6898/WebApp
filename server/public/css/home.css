@@ -48,11 +48,19 @@
         color: rgba(255, 255, 255, 0.795);
         
 } */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+body{
+        font-family: 'Questrial', sans-serif;
+}
 .home-truck-header{
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 1rem;
+}
+.home-header{
+        font-size: 2rem;
 }
 .home-add-truck-btn{
         padding: .5rem;
@@ -128,11 +136,13 @@
         top: 0;
 }
 table{
-        width: 95%;
+        width: 95%;        
         margin: auto;
+        margin-top:1em;
+        margin-bottom: 1em;
         min-width: 200px;
-        border-collapse: collapse; 
-        border-spacing: 0;
+        border-collapse:separate;
+        border-spacing:0 1.5em;
 }
 tbody{
         height: 80vh;
@@ -140,20 +150,29 @@ tbody{
 }
 td,th{
         text-align: center;
+        padding: 1em;
 }
 tr{
-        border: 1px solid;
-         ;
+        border-radius: 1em;
+        overflow: hidden;
 }
+.red-alert{
+        background:red ;
+        color: #fff;
+        box-shadow: 0 0 0px 3px red inset;
+        transform: scale(1.03);
+}
+
 tr:hover{
         background: #eeee ;
         cursor: pointer;
 }
+
 th{
-        color: #444;
-        font-weight: 100;
-        padding: .5rem;
-        border: 1px solid lightgray;
+        color: #222;
+        font-weight: 500;
+        padding: 1rem;
+       
         pointer-events: none;
 }
 @media (max-width:600px) {
@@ -166,7 +185,9 @@ th{
         }
 }
 thead,tfoot{
-        background:#eeee ;
+        background:#f1f6f6 ;
+        font-size: 1rem;
+        text-transform: uppercase;
 }
 .fa-heart-pulse{
         color: #E24242;
