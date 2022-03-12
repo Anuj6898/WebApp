@@ -2,24 +2,59 @@
 <html lang="en">
 <head>
     {{>headers}}
-    <link rel="stylesheet" href="/home.css">
+    <!--link rel="stylesheet" href="/home.css"-->
+    <link rel="stylesheet" href="/driverHealth.css">
     <title>Driver Plot</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script src="http://maps.googleapis.com/maps/api/js"></script>
 </head>
 
 <body>
         {{>userNavbar userName=userName}}
-        <div class="driver-health-gauge-container">
-          <div id="heartRateGauge"></div>
-          <div id="oxygenRateGauge"></div>
-          <div id="temperatureRateGauge"></div>
+        <div class="driver-health-main-container">
+
+
+        <div class="driver-health-header">
+          <h3>TRUCK NUMBER</h3>
+          <div class="driver-health-number"><p><i class="fa-solid fa-truck-moving"></i> MH-01-AA-2000</p></div>          
         </div>
+
+        <div class="driver-health-main-1">
+          <h2>DRIVER HEALTH <i class="fa-solid fa-hand-holding-medical"></i></h2>
+          <div class="driver-health-gauge-container">
+            <div id="heartRateGauge"></div>
+            <div id="oxygenRateGauge"></div>
+            <div id="temperatureRateGauge"></div>
+          </div>
+        </div>
+        <h2>AIR QUALITY <i class="fa-solid fa-wind"></i></h2>
         <div class="driver-graph-container">
-          <div id="dustGraph"></div>
-          <div id="gasAGraph"></div>
-          <div id="gasBgraph"></div>
+          <div class="driver-graph-1">
+            <iframe  
+              src="https://thingspeak.com/channels/1658813/charts/4?bgcolor=%23ffffea&color=%230081CF&dynamic=true&results=60&type=line&update=15%22%3E">
+            </iframe>
+          </div>
+
+          <div class="driver-graph-2">
+            <iframe  
+              src="https://thingspeak.com/channels/1658813/charts/5?bgcolor=%23ffffea&color=%230081CF&dynamic=true&results=60&type=line&update=15%22%3E">
+            </iframe>
+          </div>
+
+          <div class="driver-graph-3">
+            <iframe  
+              src="https://thingspeak.com/channels/1658813/charts/8?bgcolor=%23ffffea&color=%230081CF&dynamic=true&results=60&type=line&update=15%22%3E">
+            </iframe>
+          </div>
+
         </div>
-</body>
+        <h2>LIVE LOCATION <i class="fa-solid fa-location-dot"></i></h2>
+        <div id="driver-health-map">
+          <div id="googleMap"></div>
+        </div>
+        </div>
+
+        </body>
 <script type="text/javascript">
       function randomGen(min,max) {
                 let difference = max - min;
@@ -29,7 +64,7 @@
                 return rand;
         }
 
-      google.charts.load('current', {'packages':['gauge','corechart']});
+      google.charts.load('current', {'packages':['gauge']});
       google.charts.setOnLoadCallback(heartRate);
       google.charts.setOnLoadCallback(temperatureRate);
       google.charts.setOnLoadCallback(oxygenRate);
@@ -39,7 +74,7 @@
         var data = google.visualization.arrayToDataTable([['%','Value'],['BPM',88]])
         var options = {
           max:180,min:0,
-          width: 300, height: 300,
+          width: 250, height: 250,
           greenFrom: 45, greenTo: 110,
           yellowFrom:110, yellowTo: 140,
           redFrom: 140, redTo: 180,
@@ -62,7 +97,7 @@
         var data = google.visualization.arrayToDataTable([['%','Value'],['O2 %',98]])
         var options = {
           max:100,min:0,
-          width: 300, height: 300,
+          width: 250, height: 250,
           greenFrom: 90, greenTo: 100,
           yellowFrom:75, yellowTo: 90,
           redFrom: 50, redTo: 80,
@@ -84,7 +119,7 @@
         var data = google.visualization.arrayToDataTable([['%','Value'],['°C',36]])
         var options = {
           max:60,min:20,
-          width: 300, height: 300,
+          width: 250, height: 250,
           greenFrom: 35, greenTo: 38,
           yellowFrom:38, yellowTo:40 ,
           redFrom: 40, redTo: 45,
@@ -101,9 +136,30 @@
         }, 1000);
       }
 
-      function dustGraph(){
-        
-      }
+      // Map 
+    var lat=19.021528;
+    var lng=72.871971;
+    var myCenter=new google.maps.LatLng(lat,lng);
+
+    function initialize()
+    {
+    var mapProp = {
+      center:myCenter,
+      zoom:8,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+    var marker=new google.maps.Marker({
+      position:myCenter,
+      });
+
+    marker.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
 
     </script>
     
