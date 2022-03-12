@@ -3,8 +3,9 @@
 
 <head>
         {{>headers}}
+        
         <link rel="stylesheet" href="/home.css">
-        <title>Document</title>
+        <title>AeroFleet</title>
 </head>
 
 <body>
@@ -139,7 +140,7 @@
                         <th>Heart Rate <i class="fa-solid fa-heart-pulse"></i></th>
                         <th>Blood Oxygen <i class="fa-solid fa-hand-holding-medical"></i></th>
                         <th>Temperature <i class="fa-solid fa-temperature-half"></i></th>
-                        <th>Air Quality <i class="fa-solid fa-wind"></i></i></th>
+                        <th>Air Quality <i class="fa-solid fa-wind"></i></th>
                         <th>Latitude <i class="fa-solid fa-location-dot"></i></th>
                         <th>Longitude <i class="fa-solid fa-location-dot"></i></th>
                         <th>Watch Worn <i class="fa-solid fa-circle-exclamation"></i></th>
@@ -149,13 +150,13 @@
 </table>
         <script>
                 const audioObj = new Audio('./beep-04.mp3');
-        function randomGen(min,max) {
+                function randomGen(min,max) {
                 let difference = max - min;
                 let rand = Math.random();
                 rand = Math.floor( rand * difference);
                 rand = rand + min;
                 return rand;
-        }
+                }
 
                 var truckValues = [...document.getElementsByClassName('driver-truck')]
                 var heartValues = [...document.getElementsByClassName('driver-heart')]
@@ -193,7 +194,7 @@
 
                 },2000)
                 
-                /*const apiKey = '{{{ apiKey }}}'
+                const apiKey = '{{{ apiKey }}}'
                 const channelId = '{{{ channelId }}}'
                 const truckNum = '{{{ truckNum }}}'
                 //const d = [{truckNum:'{{{ trucks.truckNum }}}',apiKey:'{{{ trucks.apiKey }}}',channelId:'{{{ trucks.channelId }}}/'}]
@@ -207,9 +208,9 @@
                 })
                 addTruckClose.addEventListener("click",()=>{
                         addTruckForm.classList.toggle("hidden")
-                })*/
+                })
                 
-/*                fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
+                fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
                         let temp        = x.feeds[1].field1
                         let hr          = x.feeds[1].field2
                         let oxy         = x.feeds[1].field3
@@ -229,7 +230,7 @@
                         document.getElementById('latitude').innerHTML       = `${lat} &#176;`
                         document.getElementById('longitude').innerHTML      = `${long} &#176;`
 
-                })      */
+                })      
        </script>
 </body>
 </html>
