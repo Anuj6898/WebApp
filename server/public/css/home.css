@@ -65,12 +65,13 @@ body{
         padding: .5rem;
         border: none;
         color: #fff;
-        background-color: #0051ff;
+        background-color: #18324e;
         transition:all .1s ease-in-out;        
 }
 .home-add-truck-btn:hover{
         border-radius: 30px;
-        background: #0051ffdc;
+        background: #18324e;
+        
 }
 .home-add-truck-overlay{
         position: fixed;
@@ -191,7 +192,7 @@ thead,tfoot{
         color: #E2A442;
 }
 .fa-truck-moving{
-        color: #0051ff;
+        color: #18324e;
 }
 .fa-location-dot{
         color: red;

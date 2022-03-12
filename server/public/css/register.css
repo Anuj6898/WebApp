@@ -43,7 +43,7 @@
 }
 .register-logo{
         font-size: 3.5rem;
-        color: #2B93FA;
+        color: #18324e;
         margin: auto;
         margin-bottom: 1rem;
         border-radius: 50%;
@@ -52,7 +52,7 @@
 }
 .register-header{
         text-align: center;
-        color: #2B93FA;
+        color: #18324e;
         font-size: 1.5rem;
 }
 .register-grid{
@@ -108,7 +108,7 @@ input[type="password"]{
         padding: .5rem 0;
         cursor: pointer;
         border: none;
-        background: #2B93FA;
+        background: #18324e;
         color: rgba(255, 254, 254, 0.856);
         font-weight: 700;
         box-shadow: none;
