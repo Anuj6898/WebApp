@@ -149,7 +149,7 @@ tbody{
 }
 td,th{
         text-align: center;
-        padding: 1em;
+        padding: .5em;
 }
 tr{
         border-radius: 1em;

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 html{
     font-size: 100%;
     box-sizing: border-box;
@@ -10,7 +11,7 @@ body
 {
     margin: 0;
     padding: 0;
-    font-family: 'Public Sans', sans-serif;
+    font-family: 'Questrial', sans-serif;
     font-size: 1.25rem;
     font-weight: 300;
     line-height: 1.3;
@@ -38,8 +39,7 @@ nav{
 }
 /*Header*/
     .logo{
-        width: 8.8125rem;
-        height: 1.375rem;
+       
     }
     .header_menu>span{
         display: block; 

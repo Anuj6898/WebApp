@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {{>headers}}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/index.css">
     <title>AeroFleet</title>
 </head>
 <body class="">
-        {{>navbar}}
+        {{>userNavbar userName=userName}}
 
         <section class="hero_desk">  
         <div class="hero_img_desk hide-for-mob ">
@@ -105,12 +107,12 @@
 </a>
 
 <div class="footer_links_col1">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
+    <a href="/home">Data</a>
+    <a href="/admin">Admin</a>
 </div>
 <div class="footer_links_col2">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+    <a href="/about">About</a>
+    <a href="/logout">Logout</a>
 </div>
 <div class="footer_cta ">
 <div class="footer_button button">Smart India Hackathon</div>

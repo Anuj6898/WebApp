@@ -118,7 +118,7 @@ app.get('/logout', auth, async (req, res) => {
                 })
                 res.clearCookie("jwt")
                 await req.user.save()
-                res.render("afterLogout")
+                res.render("index")
 
         } catch (error) {
                 res.status(500).send(error)
@@ -209,6 +209,13 @@ app.post("/login", async (req, res) => {
 
 app.post('/addTruck',(req,res)=>{
         res.send(req.body)
+})
+
+app.get('/userHome',(req,res)=>{
+        res.render('userHome')
+})
+app.get('/about',(req,res)=>{
+        res.render('about')
 })
 
 app.listen(port, () => {
