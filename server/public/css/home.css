@@ -157,15 +157,9 @@ tr{
         overflow: hidden;
 }
 .red-alert{
-        background:red ;
+        background:rgb(255, 22, 22) ;
         color: #fff;
-        box-shadow: 0 0 0px 3px red inset;
-        transform: scale(1.03);
-}
-
-tr:hover{
-        background: #eeee ;
-        cursor: pointer;
+        transform: scale(1.02);
 }
 
 th{
@@ -212,4 +206,24 @@ thead,tfoot{
 }
 .fa-circle-chevron-down:hover{
         color: #111;
+}
+
+#heartRateGauge,#oxygenRateGauge,#temperatureRateGauge{
+        border: 1px solid;
+        margin: 1rem;
+}
+
+
+.driver-health-gauge-container{
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        display: flex;
+        border: 1px solid;
+        margin: 1em 0;
+}
+@media screen and (max-width:780px) {
+        .driver-health-gauge-container{
+                flex-direction: column;
+        }
 }
