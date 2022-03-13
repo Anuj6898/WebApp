@@ -1,101 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>headers}}
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>AeroFleet</title>
 </head>
 <body class="">
-        {{>userNavbar userName=userName}}
+        {{>userNavbar}}
 
-        <section class="hero_desk">  
-        <div class="hero_img_desk hide-for-mob ">
-        <img src="images/bg.png" alt="hero_img">
+<section class="hero_desk">  
+        <div class="hero_img_desk hide-for-mob" data-aos="fade-right">
+            <img src="images/purifier.png" height="400px" width="400px" alt="">
         </div>
-    <div class="hero_text_desk container_text ">
-        <h1 class="animate">AEROFLEET</h1>
-        <p class="animate"> Connect with University Students and Professionals with CareerCoach and get the right direction for a bright career</p>
+    <div class="hero_text_desk container_text " data-aos="fade-left">
+        <img src="images/aero.png" alt="">
+        <h1 class="">AEROFLEET</h1>
+        <p class="">The best fleet management service with data analysis, driver health Monitoring and air Purification</p>
     </div>
 </section>
 <!-- features -->
 <section class="features container_all">
-    <div class="feature_intro">
-        <h2>Why we choose this problem statement</h2>
-        <p>Connect with 50+ mentors over various fields and 100+ students from universities around the globe from the comfort of your home.</p>
+    <div class="feature_intro" data-aos="fade-right">
+        <div class="feature_intro_intro">
+        <h2>Problem Statement - SK1206</h2>
+        <p>Typically truck drivers operate for long hours and at times in highly polluted environments like mines. Driver health and alertness while driving is key to avoid accidents at work site. Sometimes air quality deteriorates inside the cabin, and this could lead to driver fatigue. ​Can you come up with solutions that can detect the air quality level inside the cabin and improve it, and at the same time alerting the driver as well as fleet management about the vital health characteristics of the driver like heart rate, oxygen level etc.?​​</p>
+        </div>
+        <div class="feature_watch">
+            <img src="/images/aerowatch.png" alt="">
+        </div>
     </div>
     <div class="feature_grid">
-        <div class="feature_item">
+        <div class="feature_item" data-aos="flip-up">
             <div class="feature_icon">
-                <img src="images/location.gif" alt="gps">
+                <img src="/images/alert.png"  alt="gps">
             </div>
             <div class="feature_title">
-                title 
+                Driver health Monitoring
             </div>
             <div class="feature_desc">
-                descrip
+                Driver health and alertness while driving is key to avoid accidents at Work site
             </div>
         </div>
-        <div class="feature_item">
+        <div class="feature_item" data-aos="flip-down">
             <div class="feature_icon">
-                <img src="images/location.gif" alt="gps">
+                <img src="/images/alert-2.png"  alt="gps">
             </div>
             <div class="feature_title">
-                title
+                Fleet Alert System
             </div>
             <div class="feature_desc">
-                descrip
+                Alerting the driver as well as fleet management about the vital health characteristics of the driver
             </div>
         </div>
-        <div class="feature_item">
+        <div class="feature_item" data-aos="flip-up">
             <div class="feature_icon">
-                <img src="images/location.gif" alt="gps">
+                <img src="/images/alert-3.png" alt="gps">
             </div>
             <div class="feature_title">
-                title 
+                Cabin Air Quality Purification
             </div>
             <div class="feature_desc">
-                descrip
+                Solutions that can detect the air quality level inside the cabin and improve it.
+            </div>
+        </div>
+        <div class="feature_item" data-aos="flip-down">
+            <div class="feature_icon">
+                <img src="/images/alert-4.png" alt="gps">
+            </div>
+            <div class="feature_title">
+                Cabin Air Quality Monitoring
+            </div>
+            <div class="feature_desc">
+                Air quality deteriorates inside the cabin, and this could lead to driver fatigue​
             </div>
         </div>
     </div>
 </section>
 <!-- Testimonial -->
 <section class="test container_all">
-    <div class="test_intro">
+    <div class="test_intro" data-aos="fade-right">
         <h2>Our Mentors</h2>
-        <p>Connect with 50+ mentors over various fields and 100+ students from universities around the globe from the comfort of your home.</p>
+        <p>We take this opportunity to express our profound gratitude and deep regards to our guide Prof. Amit Nerurkar for his exemplary guidance, monitoring and constant encouragement throughout the course of this project work. 
+We also take this opportunity to express a deep sense of gratitude to
+Dr. Sanjay Singh Thakur, HOD of E.X.T.C. Dept. for his cordial support, valuable information and guidance, which helped us in completing this task through various stages.
+We are obliged to staff members of Vidyalankar Institute of Technology, for the valuable information provided by them in their respective fields. We are grateful for their cooperation during the period of our project work.
+</p>
     </div>
     <div class="test_grid">
-        <div class="test_item">
-            <div class="client">
+        <div class="test_item" data-aos="flip-right">
+            <div class="client container_all">
                 <div class="test_icon">
-                    <img src="images/l-purohit.png" alt="gps">
+                    <img src="images/sanjaysinghthakur.png" alt="gps">
                 </div>
                 <div class="test_name">
-                    Sanjay Thakur
+                    Dr. Sanjay S Thakur
                 </div>
             </div>
             <div class="test_desc">
-                This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (He is the chief executive officer at Sporcle. He is best known as an early employee and key technical contributor at the original Napster. Aydar bought Fanning his first book on programming in C++, the language he would use two years later to build the Napster file-sharing software.
-                Alan Turing (23 June 1912 – 7 June 1954) was a Britishd 
+                Ph.D. (Printed Antenna), SAMEER, IITB 2014
+M.E. (Electronics), University of Mumbai 1994
+B.E. (EXTC), Govt Engineering College, Jabalpur 1985
+
+Experience
+Teaching Experience: 35 Years
+Research Experience: 5 Years
+Technical Papers Published: 46
+
+Email
+sanjaysingh.thakur@vit.edu.in
             </div>
             
             </div>
-            <div class="test_item">
+            <div class="test_item" data-aos="flip-left">
                 <div class="client container_all">
                     <div class="test_icon">
-                        <img src="images/l-purohit.png" alt="gps">
+                        <img src="images/amitnerulkar.png" alt="gps">
                     </div>
                     <div class="test_name">
-                        Amit Nerulkar
+                        Prof.Amit Nerurkar
                     </div>
                 </div>
                 <div class="test_desc">
-                    This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (He is the chief executive officer at Sporcle. He is best known as an early employee and key technical contributor at the original Napster. Aydar bought Fanning his first book on programming in C++, the language he would use two years later to build the Napster file-sharing software.
-                    Alan Turing (23 June 1912 – 7 June 1954) was a Britishd 
+                    Qualification
+M.E. Computer Engineering, University of Mumbai 2012
+B.E. Computer Engineering, University of Mumbai 2009
+
+Experience
+Teaching Experience: 11 Years
+Technical Papers Published: 29
+Masters Students Guided: 1
+
+Email
+amit.nerurkar@vit.edu.in
                 </div>
                 
                 </div>
@@ -103,23 +141,28 @@
 </section>
 <Footer class="footer">
 <a class="footer_logo"href="/">
-    <img src="images/aero.png" alt="">
+    <img src="images/aero.png" heigh="70px" width="70px" alt="">AEROFLEET
 </a>
 
 <div class="footer_links_col1">
-    <a href="/home">Data</a>
-    <a href="/admin">Admin</a>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
 </div>
 <div class="footer_links_col2">
-    <a href="/about">About</a>
+    <a href="/admin">Admin</a>
     <a href="/logout">Logout</a>
 </div>
 <div class="footer_cta ">
-<div class="footer_button button">Smart India Hackathon</div>
- <div class="footer_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, molestiae?</div>
+<a  href="https://www.sih.gov.in/" target="_blank" class="footer_button button">Smart India Hackathon</a>
+ <div class="footer_text"></div>
 </div>
 
 </Footer>
  <script src="app/js/script.js"></script>   
 </body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
 </html>

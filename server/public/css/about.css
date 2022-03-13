@@ -11,6 +11,9 @@ body {
     box-sizing: inherit;
   }
   
+  .row{
+    background: #3F8D87;
+  }
   .column {
     float: left;
     width: 33.3%;
@@ -27,22 +30,11 @@ body {
   .about-section {
     padding: 50px;
     text-align: center;
-    background-color: #EEF1F4;
   }
   
   .about-heading h1 {
     text-align: center;
     color: #7600a9;
-  }
-  
-  .container {
-    padding: 0 30px;
-  }
-  
-  .container::after, .row::after {
-    content: "";
-    clear: both;
-    display: table;
   }
   
   .button {

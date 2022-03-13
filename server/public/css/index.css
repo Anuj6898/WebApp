@@ -274,9 +274,23 @@ nav{
     text-decoration: underline;
 }
 .feature_intro_intro>p{
+    padding-top: 1rem;
     padding-left: 1rem;
+    font-size: 1.5rem;
     text-align: justify;
 }
+@media screen and (max-width:800px) {
+    .feature_intro{
+        flex-direction: column;
+    }
+    .feature_intro_intro>p{
+        font-size: 1rem;
+    }
+    .feature_watch{
+        display: none;
+    }
+}
+
 .feature_item
 {
     flex: 1;
@@ -294,8 +308,8 @@ nav{
     margin-bottom: 2.75rem;
 }
 .feature_icon>img{
-    height: 200px;
-    width: 200px;
+    height: 140px;
+    width: 140px;
 }
 .feature_title
 {
@@ -333,7 +347,8 @@ nav{
 }
 
 .test_intro{
-    width: 55%;
+    margin: auto;
+    width: 70%;
     margin-bottom: 3.75rem;
 }
 .test_intro>h2{
