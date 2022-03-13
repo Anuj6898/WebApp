@@ -56,6 +56,16 @@
         {{>footer}}
         </body>
 <script type="text/javascript">
+      var temp;
+      var hr;
+      var oxy;
+      var watch;
+      var aqi;
+      var cMono;
+      var dust;
+      var lat;
+      var long;
+
       function randomGen(min,max) {
                 let difference = max - min;
                 let rand = Math.random();
@@ -71,7 +81,7 @@
 
               // Heart Rate Gauge
       function heartRate(){
-        var data = google.visualization.arrayToDataTable([['%','Value'],['BPM',88]])
+        var data = google.visualization.arrayToDataTable([['%','Value'],['BPM',0]])
         var options = {
           max:180,min:0,
           width: 250, height: 250,
@@ -87,14 +97,14 @@
         }
         var chart = new google.visualization.Gauge(document.getElementById('heartRateGauge'));
         setInterval(function() {
-          data.setValue(0, 1, randomGen(60,100));
+          data.setValue(0, 1, randomGen(0,150));
           chart.draw(data, options);
         }, 1000);
       }
 
                     // SpO2 Gauge
       function oxygenRate(){
-        var data = google.visualization.arrayToDataTable([['%','Value'],['O2 %',98]])
+        var data = google.visualization.arrayToDataTable([['%','Value'],['O2 %',0]])
         var options = {
           max:100,min:0,
           width: 250, height: 250,
@@ -109,14 +119,14 @@
         }
         var chart = new google.visualization.Gauge(document.getElementById('oxygenRateGauge'));
         setInterval(function() {
-          data.setValue(0, 1, randomGen(90,100));
+          data.setValue(0, 1, randomGen(0,100));
           chart.draw(data, options);
         }, 1000);
       }
 
               // Temperature Gauge
       function temperatureRate(){
-        var data = google.visualization.arrayToDataTable([['%','Value'],['°C',36]])
+        var data = google.visualization.arrayToDataTable([['%','Value'],['°C',20]])
         var options = {
           max:60,min:20,
           width: 250, height: 250,
@@ -131,7 +141,7 @@
         }
         var chart = new google.visualization.Gauge(document.getElementById('temperatureRateGauge'));
         setInterval(function() {
-          data.setValue(0, 1, randomGen(35,40));
+          data.setValue(0, 1, randomGen(20,40));
           chart.draw(data, options);
         }, 1000);
       }
@@ -139,7 +149,7 @@
       // Map 
     var lat=19.021528;
     var lng=72.871971;
-    var myCenter=new google.maps.LatLng(lat,lng);
+    var myCenter=new google.maps.LatLng(lat,long);
 
     function initialize()
     {
@@ -160,6 +170,22 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
+   /*setInterval(()=>{
+
+      fetch('https://api.thingspeak.com/channels/1658813/feeds.json?api_key=G9IWRDIX8Y4H6S06&results=2').then(res=>res.json()).then(x=>{
+                        temp        = x.feeds[1].field1
+                        hr          = x.feeds[1].field2
+                        oxy         = x.feeds[1].field3
+                        watch       = x.feeds[1].field4
+                        location    = x.feeds[1].field6 
+                        aqi         = x.feeds[1].field5 
+                        cMono       = x.feeds[1].field7 
+                        dust        = x.feeds[1].field8.split('_')
+                        lat         = dust[0]
+                        long        = dust[1]
+                        
+                })      
+      },1000)*/
 
     </script>
     

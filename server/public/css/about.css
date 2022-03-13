@@ -47,10 +47,13 @@ body {
     height: 150px;
     width: 150px;
   }
-
+  .about-para-1{
+    text-align: center;
+    color: aliceblue;
+  }
   .about-section {
     padding: 50px;
-    text-align: center;
+    text-align: justify;
   }
   
   .about-heading h1 ,h2{

@@ -210,7 +210,8 @@
                 addTruckClose.addEventListener("click",()=>{
                         addTruckForm.classList.toggle("hidden")
                 })
-                
+                setInterval(()=>{
+
                 fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
                         let temp        = x.feeds[1].field1
                         let hr          = x.feeds[1].field2
@@ -230,8 +231,8 @@
                         document.getElementById("aqi").innerHTML            =  aqi?`Good`:`Bad` 
                         document.getElementById('latitude').innerHTML       = `${lat} &#176;`
                         document.getElementById('longitude').innerHTML      = `${long} &#176;`
-
                 })      
+                },5000)
        </script>
 </body>
 </html>
