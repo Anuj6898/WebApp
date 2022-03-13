@@ -139,30 +139,44 @@ amit.nerurkar@vit.edu.in
                 </div>
     </div>
 </section>
-<Footer class="footer">
-<a class="footer_logo"href="/">
-    <img src="images/aero.png" heigh="70px" width="70px" alt="">AEROFLEET
-</a>
-
-<div class="footer_links_col1">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-</div>
-<div class="footer_links_col2">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-</div>
-<div class="footer_cta ">
-<a  href="https://www.sih.gov.in/" target="_blank" class="footer_button button">Smart India Hackathon</a>
- <div class="footer_text"></div>
-</div>
-
-</Footer>
+{{>footer}}
  <script src="app/js/script.js"></script>   
 </body>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
+    const btnhamburger=document.querySelector('#btnHamburger');
+const body=document.querySelector('body');
+const header=document.querySelector('.header');
+const overlay=document.querySelector('#overlayid');
+const headerMob=document.querySelector('.header_mob');
+
+
+
+btnhamburger.addEventListener('click',function(){
+console.log('open btnHamburger');
+if(btnhamburger.classList.contains('open')){//close karnege tab
+    btnhamburger.classList.remove('open');
+    btnhamburger.classList.remove('overlay_open');
+    //overlay.classList.remove('overlay');
+    //overlay.classList.add('fade');
+    headerMob.classList.add('fade');
+    headerMob.classList.remove('fade_ani');
+    body.classList.remove('noscroll');
+}
+else{//open karenge tab
+    btnhamburger.classList.add('open');
+   // overlay.classList.add('overlay');
+    //btnhamburger.classList.add('overlay_open');
+    //overlay.classList.remove('fade');
+    headerMob.classList.remove('fade');
+    headerMob.classList.add('fade_ani');
+    body.classList.add('noscroll');
+}
+});
+btnhamburger.addEventListener('click',() => {
+    overlay.classList.toggle("overlay_open");
+});
   </script>
 
 </html>

@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+    margin: 0;padding: 0;
+    font-family: 'Questrial', sans-serif;
+    background: #3F8D87;
   }
   
   html {
@@ -11,8 +13,14 @@ body {
     box-sizing: inherit;
   }
   
-  .row{
-    background: #3F8D87;
+  .mentors-row{
+    display: flex;
+    justify-content: center;
+  }
+  @media screen and (max-width:600px) {
+    .mentors-row{
+      flex-direction: column;
+    }
   }
   .column {
     float: left;
@@ -22,37 +30,54 @@ body {
   }
   
   .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:  10px 10px 20px #377b75,
+             -10px -10px 20px #479f99;
     margin: 8px;
     border-radius: 20px;
+    background: #fff;
   }
-  
+  .card-img{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .card-img>img{
+    padding: 1rem;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+  }
+
   .about-section {
     padding: 50px;
     text-align: center;
   }
   
-  .about-heading h1 {
+  .about-heading h1 ,h2{
     text-align: center;
-    color: #7600a9;
+    color: #f8f8f8;
+    font-size: 3rem;
   }
-  
-  .button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: black;
+  .container>h2{
+    color: #444;
+    font-size: 2rem;
+  }
+  .container>p{
+    color: gray;
+    font-size: 1rem;
     text-align: center;
-    cursor: pointer;
-    width: 30%;
-    border-radius: 20px;
   }
-  
-  .button:hover {
-    background-color: #7600a9;
-    color: white;
+  .about_container_links{
+    margin:auto;
+    display: flex;
+    width: 50%;
+    margin-top: 1rem;
+    justify-content: space-evenly;
+  }
+  .about_container_links>a{
+    color: #18324e;
+    font-size: 1.4rem;
+
   }
   
   @media screen and (max-width: 650px) {
