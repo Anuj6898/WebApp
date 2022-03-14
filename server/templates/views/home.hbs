@@ -172,7 +172,7 @@
                         let beats = randomGen(30,130)
                         if(beats>120 || beats<30){
                                 x.parentNode.classList.add('red-alert')
-                                //audioObj.play()
+                                audioObj.play()
                         }
                         else{
                                 x.parentNode.classList.remove('red-alert')
@@ -234,6 +234,7 @@
                         document.getElementById('longitude').innerHTML      = `${long} &#176;`
                         if(hr>120 || hr<40 || oxy<90){
                                 row1.add('red-alert')
+                                audioObj.play()
                                 }
                         else{
                                 row.remove('red-alert')
