@@ -50,7 +50,10 @@ body{
 }
 .driver-graph-1>iframe,
 .driver-graph-2>iframe,
-.driver-graph-3>iframe{
+.driver-graph-3>iframe,
+.driver-graph-4>iframe,
+.driver-graph-5>iframe,
+.driver-graph-6>iframe{
     width: 450px;
     height: 260px;
     border-radius: 1rem;

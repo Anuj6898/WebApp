@@ -211,7 +211,8 @@
                         addTruckForm.classList.toggle("hidden")
                 })
                 setInterval(()=>{
-
+                const row1 = document.getElementById('row1').classList
+                
                 fetch(` https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=2`).then(res=>res.json()).then(x=>{
                         let temp        = x.feeds[1].field1
                         let hr          = x.feeds[1].field2
@@ -224,13 +225,19 @@
                         let lat         = dust[0]
                         let long        = dust[1]
 
-                        document.getElementById("temp").innerHTML           = `${temp} &#176;C`
+                        document.getElementById("temp").innerHTML           = `${temp} &#176;F`
                         document.getElementById("oxy").innerHTML            = `${oxy} %`
                         document.getElementById("hr").innerHTML             = `${hr} BPM`
                         document.getElementById("watch").innerHTML          =  watch?`Yes`:`No`
                         document.getElementById("aqi").innerHTML            =  aqi?`Good`:`Bad` 
                         document.getElementById('latitude').innerHTML       = `${lat} &#176;`
                         document.getElementById('longitude').innerHTML      = `${long} &#176;`
+                        if(hr>120 || hr<40 || oxy<90){
+                                row1.add('red-alert')
+                                }
+                        else{
+                                row.remove('red-alert')
+                        }
                 })      
                 },5000)
        </script>
